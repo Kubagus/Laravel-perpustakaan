@@ -24,7 +24,7 @@ class BukuController extends Controller
             $buku = Buku::where('judul','like','%'.$request->search.'%')->paginate(6);
         }
         else{
-            $buku = Buku::paginate(6);
+            $buku = Buku::orderBy('id', 'desc')->paginate(6);
         }
         $iduser = Auth::id();
         $profile = Profile::where('users_id', $iduser)->first();
@@ -62,6 +62,8 @@ class BukuController extends Controller
                 'penerbit' => 'required',
                 'tahun_terbit' => 'required',
                 'deskripsi' => 'required',
+                'status' => 'required',
+                'stock' => 'required',
                 'gambar' => 'nullable|mimes:jpg,jpeg,png|max:2048',
             ],
             [
@@ -73,6 +75,8 @@ class BukuController extends Controller
                 'penerbit.requiered' => 'penerbit tidak boleh kosong',
                 'tahun_terbit.required' => 'harap isi tahun terbit',
                 'deskripsi.required' => 'deskripsi tidak boleh kosong',
+                'status.required' => 'status tidak boleh kosong',
+                'stock.required' => 'Buku yang baru ditambahan minimal ada 1 buku',
                 'gambar.mimes' => 'Gambar Harus Berupa jpg,jpeg,atau png',
                 'gambar.max' => 'ukuran gambar tidak boleh lebih dari 2048 MB',
             ],
@@ -88,6 +92,8 @@ class BukuController extends Controller
                 'pengarang'=>$request['pengarang'],
                 'penerbit'=>$request['penerbit'],
                 'tahun_terbit'=>$request['tahun_terbit'],
+                'status'=>$request['status'],
+                'stock'=>$request['stock'],
                 'deskripsi'=>$request['deskripsi'],
                 'gambar'=>$nama_gambar
             ]);
@@ -148,6 +154,8 @@ class BukuController extends Controller
                 'penerbit' => 'required',
                 'tahun_terbit' => 'required',
                 'deskripsi' => 'required',
+                'status' => 'required',
+                'stock' => 'nullable',
                 'gambar' => 'nullable|mimes:jpg,jpeg,png|max:2048',
             ],
             [
@@ -156,6 +164,8 @@ class BukuController extends Controller
                 'penerbit.requiered' => 'penerbit tidak boleh kosong',
                 'tahun_terbit.required' => 'harap isi tahun terbit',
                 'deskripsi.required' => 'deskripsi tidak boleh kosong',
+                'status.required' => 'status tidak boleh kosong',
+                'stock.required' => 'stock tidak boleh kosong',
                 'gambar.mimes' => 'Gambar Harus Berupa jpg,jpeg,atau png',
                 'gambar.max' => 'ukuran gambar tidak boleh lebih dari 2048 MB',
             ],
@@ -179,6 +189,8 @@ class BukuController extends Controller
         $buku->penerbit = $request->penerbit;
         $buku->tahun_terbit = $request->tahun_terbit;
         $buku->deskripsi = $request->deskripsi;
+        $buku->status = $request->status;
+        $buku->stock = $request->stock;
         $buku->kategori_buku()->sync($request->kategori_buku);
         $buku->save();
 

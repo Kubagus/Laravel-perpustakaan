@@ -49,12 +49,17 @@
                     <select name="buku_id" id="" class="form-control">
                         <option value=""></option>
                         @forelse ($buku as $item)
-                                <option value="{{ $item->id }}">{{ $item->judul}} ( {{ $item->kode_buku }} ) - {{ $item->status }}</option>
+                        
+                                <option value="{{ $item->id }}">{{ $item->judul}} ( {{ $item->kode_buku }} ) - {{ $item->status }} | {{ $item->stock }}</option>
                             @empty
                                 tidak ada buku yang tersedia
                             @endforelse
                     </select>
                 </div>
+
+                @error('buku_id')
+                    <div class="alert alert-danger mt-3">{{ $message }}</div>
+                @enderror
 
                 @error('buku_id')
                     <div class="alert alert-danger mt-3">{{ $message }}</div>

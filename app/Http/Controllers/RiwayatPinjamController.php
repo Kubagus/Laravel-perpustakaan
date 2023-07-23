@@ -40,6 +40,7 @@ class RiwayatPinjamController extends Controller
         $iduser = Auth::id();
         $profile = Profile::where('users_id',$iduser)->first();
         $buku = Buku::where('status','In Stock')->get();
+        $stock = Buku::where('stock', '>', '0')->get();
         $user = User::all();
 
         if(Auth::user()->isAdmin == 1){
@@ -51,7 +52,8 @@ class RiwayatPinjamController extends Controller
 
 
 
-        return view('peminjaman.tambah',['profile'=>$profile,'users'=>$user,'buku'=>$buku, 'peminjam'=>$peminjam]);
+
+        return view('peminjaman.tambah',['profile'=>$profile,'users'=>$user,'buku'=>$buku, 'peminjam'=>$peminjam, 'stock'=>$stock]);
     }
     /**
      * Store a newly created resource in storage.
@@ -89,6 +91,7 @@ class RiwayatPinjamController extends Controller
                 Peminjaman::create($request->all());
                 // Proses update tabel buku
                 $buku = Buku::findOrFail($request->buku_id);
+                $buku->stock = $buku->stock-1;
                 $buku->status = 'dipinjam';
                 $buku->save();
                 DB::commit();

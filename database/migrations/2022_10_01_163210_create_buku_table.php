@@ -20,9 +20,10 @@ class CreateBukuTable extends Migration
             $table->string('pengarang');
             $table->string('penerbit');
             $table->string('tahun_terbit');
-            $table->text('deskripsi');
+            $table->text('deskripsi')->default('Deskripsi Buku');
             $table->string('gambar')->nullable();
             $table->string('status')->default('In Stock');
+            $table->integer('stock')->nullable();
             $table->timestamps();
         });
     }

@@ -39,6 +39,37 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
 
+                {{-- <div class="form-group mb-3">
+                    <label for="status"class="text-primary font-weight-bold"> Status Buku</label>
+                    @if ($buku->stock == 0)
+                        <input type="text" name="status" class="form-control" value="Empty">
+                    @else
+                        <input type="text" name="status" class="form-control" value="{{ old('status', $buku->status) }}">
+                    @endif
+                </div>
+
+                @error('status')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror --}}
+                
+                <div class="form-group mb-3">
+                    <label for="status" class="text-primary font-weight-bold">status</label>
+                    <select class="form-control" name="status">
+                        @if ($buku->stock != 0)
+                            <option value="In Stock" selected>In Stock</option>
+                        @else
+                            <option value="in stock">{{ $buku->status }}</option>
+                            <option value="Empty">Empty</option>
+                        @endif
+                            {{-- <option value="in stock">{{ $buku->status }}</option>
+                            <option value="">{{ $buku->stock == 0? 'Empty' : 'In Stock'}}</option> --}}
+                    </select>
+                </div>
+
+                @error('status')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                
                 <div class="form-group mb-3">
                     <label for="kategori" class="text-primary font-weight-bold">Kategori</label>
                     <select class="form-control" name="kategori_buku[]" id="multiselect" multiple="multiple">
@@ -60,6 +91,15 @@
                     <input type="text" name="pengarang" class="form-control"
                         value="{{ old('pengarang', $buku->pengarang) }}">
                 </div>
+
+                <div class="form-group mb-3">
+                    <label for="stock" class="text-primary font-weight-bold">stock</label>
+                    <input type="text" name="stock" class="form-control" value="{{ old('stock', $buku->stock) }}">
+                </div>
+
+                @error('stock')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
                 @error('pengarang')
                     <div class="alert alert-danger">{{ $message }}</div>

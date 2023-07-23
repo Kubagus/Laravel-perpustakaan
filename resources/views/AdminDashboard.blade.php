@@ -10,7 +10,7 @@
 @endsection
 
 @section('judul')
-    <h1 class="text-primary">Dashboard</h1>
+    <h1 class="text-dark">Dashboard</h1>
 @endsection
 
 @push('styles')
@@ -105,12 +105,12 @@
     </div>
 
     <!-- Table-->
-    <h1 class="text-primary"> Riwayat Peminjaman</h1>
-    <div class="col-lg-auto">
-        <div class="card mb-4">
-            <div class="table-responsive p-3">
-                <table class="table align-items-center justify-content-center table-flush table-hover" id="dataTableHover" style="font-size:.7rem">
-                    <thead class="thead-light">
+    <h1 class="text-dark"> Riwayat Peminjaman</h1>
+    <div class="col-lg-auto g-dark text-light">
+        <div class="card mb-4 bg-dark text-light">
+            <div class="table-responsive p-3 bg-dark text-light">
+                <table class="table align-items-center justify-content-center table-flush table-hover bg-dark text-light" id="dataTableHover" style="font-size:.7rem">
+                    <thead class="thead-dark">
                         <tr>
                             <th scope="col">No.</th>
                             <th scope="col">Nama</th>

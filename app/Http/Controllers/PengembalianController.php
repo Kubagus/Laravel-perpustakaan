@@ -19,6 +19,7 @@ class PengembalianController extends Controller
         $iduser = Auth::id();
         $profile = Profile::where('users_id',$iduser)->first();
         $buku = Buku::where('status','dipinjam')->get();
+        $stock = Buku::where('stock', '>=', '0')->get();
         $user = User::all();
         $peminjam = Profile::where('users_id','>','1')->get();
 
@@ -41,6 +42,7 @@ class PengembalianController extends Controller
                 //update status buku
                 $buku = Buku::findOrFail($request->buku_id);
                 $buku->status = 'In Stock';
+                $buku->stock = $buku->stock + 1;
                 $buku->save();
                 DB::commit();
                 Alert::success('Berhasil', 'Berhasil Mengembalikan Buku');

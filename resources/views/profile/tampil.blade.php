@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header py-3">
+        <div class="card-header py-3 text-dark">
             <h4 class="m-0 font-weight-bold text-primary">Profile</h4>
         </div>
         <div class="row">

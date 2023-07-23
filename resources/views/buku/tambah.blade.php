@@ -43,6 +43,13 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
 
+
+                <div class="form-group mb-3">
+                    <label for="status" class="text-primary font-weight-bold">status</label>
+                    <select class="form-control" name="status">
+                        <option value="in stock">In Stock</option>
+                    </select>
+                </div>
                 <div class="form-group mb-3">
                     <label for="kategori" class="text-primary font-weight-bold">Kategori</label>
                     <select class="form-control" name="kategori_buku[]" id="multiselect" multiple="multiple">
@@ -56,6 +63,15 @@
                 </div>
 
                 @error('kategori')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+
+                <div class="form-group mb-3">
+                    <label for="stock" class="text-primary font-weight-bold">stock</label>
+                    <input type="text" name="stock" class="form-control" value="{{ old('stock') }}">
+                </div>
+
+                @error('stock')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
 

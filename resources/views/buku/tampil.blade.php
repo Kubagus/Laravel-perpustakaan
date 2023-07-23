@@ -55,7 +55,7 @@
                                     {{ $kategori->nama, }},
                                     @endforeach
                             </p>
-                                <p class="card-text m-0">Status : {{$item->status  }}</p>
+                                <p class="card-text m-0">Status : {{$item->status }}</p>
                             </div>
                             @if (Auth::user()->isAdmin == 1)
                                 <div class="button-area">
